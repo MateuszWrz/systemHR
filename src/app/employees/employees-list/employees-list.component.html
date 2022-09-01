@@ -1,1 +1,33 @@
-<p>employees-list works!</p>
+<div class="container-fluid">
+    <div>
+        <h5> Lista pracowników</h5>
+    </div>
+    <div class="table-wrapper mt-4">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr *ngFor="let employeeEl of employees">
+                    <td>Imię</td>
+                    <td>Nazwisko</td>
+                    <td>Data urodzenia</td>
+                    <td>Data zatrudnienia</td>
+                    <td>Stanowisko</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mateusz</td>
+                    <td>Wrzyszcz</td>
+                    <td>05.07.1999</td>
+                    <td>20.06.2022</td>
+                    <td>Software Engineer</td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button class="btn btn-danger btn-sm">Usuń</button>
+    </div>
+</div>

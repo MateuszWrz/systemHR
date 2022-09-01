@@ -1,5 +1,8 @@
 <div class="container-fluid flex-column w-75 bg-light">
-    <div class="col-md-6 mb-3">
+    <div>
+        <h5>Nowy pracownik</h5>
+    </div>
+    <div class="col-md-6 mb-3 mt-2">
         <label for="floatingSelect">Imię</label>
         <input type="text" class="form-control" id="floatingInput" placeholder="Imię">
 
@@ -28,6 +31,8 @@
         </select>
 
     </div>
-    <button class="btn btn-success btn-sm">Zapisz</button>
-    <button class="btn btn-danger btn-sm">Anuluj</button>
+    <div class="d-grid gap-2 d-md-flex">
+        <button type="button" class="btn btn-success btn-sm" (click)="onAddEmployee()">Dodaj</button>
+        <button type="button" class="btn btn-secondary btn-sm">Anuluj</button>
+    </div>
 </div>
