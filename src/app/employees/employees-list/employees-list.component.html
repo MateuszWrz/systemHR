@@ -5,7 +5,7 @@
     <div class="table-wrapper mt-4">
         <table class="table table-striped table-bordered">
             <thead>
-                <tr *ngFor="let employeeEl of employees">
+                <tr>
                     <td>Imię</td>
                     <td>Nazwisko</td>
                     <td>Data urodzenia</td>
@@ -21,8 +21,12 @@
                     <td>20.06.2022</td>
                     <td>Software Engineer</td>
                 </tr>
-                <tr>
-                    <td></td>
+                <tr *ngFor="let employeeEl of employee">
+                    <td>{{employeeEl.name}}</td>
+                    <td>{{employeeEl.surname}}</td>
+                    <td>{{employeeEl.dateOfBirth}}</td>
+                    <td>{{employeeEl.dateOfEmployment}}</td>
+                    <td>{{employeeEl.contract}}</td>
                 </tr>
             </tbody>
         </table>
