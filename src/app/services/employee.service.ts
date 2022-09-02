@@ -1,37 +1,24 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { EmployeeListService } from './employee-list.service';
 import { Employee } from '../models/employee.model';
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EmployeeService {
-  // employeeSelected = new EventEmitter<Employee>();
-  employeeAdd = new EventEmitter<Employee[]>();
-  private employees: Employee[] = [
-    new Employee(
-      'Janusz',
-      'Kowalski',
-      null,
-      null,
-      //   new Date(1973, 9, 10),
-      //   new Date(2021, 7, 21),
-      'Senior'
-    ),
-    new Employee(
-      'Rafał',
-      'Sokół',
-      null,
-      null,
-      // new Date(1973, 9, 10),
-      // new Date(2021, 7, 21),
-      'Graphic artist'
-    ),
-  ];
+  employee: Employee[];
+  constructor(
+    private http: HttpClient,
+    private employeeListService: EmployeeListService
+  ) {}
 
-  getEmployees() {
-    return this.employees.slice();
-  }
-
-  addEmployee(employee: Employee) {
-    this.employees.push(employee);
-    this.employeeAdd.emit(this.employees.slice());
+  employeesAdd() {
+    const employees = this.employeeListService.getEmployees();
+    return this.http
+      .put(
+        'https://systemhr-c155e-default-rtdb.europe-west1.firebasedatabase.app/employees.json',
+        employees
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

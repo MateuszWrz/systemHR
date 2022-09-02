@@ -7,6 +7,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
 import { EmployeeAddComponent } from './employees/employee-add/employee-add.component';
 import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,10 @@ import { HeaderComponent } from './header/header.component';
     EmployeesComponent,
     EmployeesListComponent,
     EmployeeAddComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

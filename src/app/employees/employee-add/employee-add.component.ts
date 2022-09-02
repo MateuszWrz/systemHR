@@ -1,15 +1,16 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
+import { EmployeeListService } from 'src/app/services/employee-list.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-employee-add',
   templateUrl: './employee-add.component.html',
   styleUrls: ['./employee-add.component.css'],
-  providers: [EmployeeService],
+  providers: [EmployeeService, EmployeeListService],
 })
 export class EmployeeAddComponent implements OnInit {
-  @Input() employee: Employee[];
+  @Input() employees: Employee[];
   @ViewChild('nameEmployee') nameInputRef: ElementRef;
   @ViewChild('surnameEmployee') surnameInputRef: ElementRef;
   @ViewChild('birthEmployee') birthInputRef: ElementRef;
@@ -17,8 +18,11 @@ export class EmployeeAddComponent implements OnInit {
   @ViewChild('contractEmployee') contractInputRef: ElementRef;
   constructor(private employeeService: EmployeeService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
+
   onAddEmployee() {
+    // this.employeeService.employeesAdd();
+
     const empName = this.nameInputRef.nativeElement.value;
     const empSurname = this.surnameInputRef.nativeElement.value;
     const empBirth = this.birthInputRef.nativeElement.value;
@@ -31,7 +35,7 @@ export class EmployeeAddComponent implements OnInit {
       empEmployment,
       empContract
     );
-    this.employeeService.addEmployee(newEmployee);
+    this.employees.push(newEmployee);
     console.log(newEmployee);
   }
 }
