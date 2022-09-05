@@ -8,6 +8,7 @@ import { EmployeesListComponent } from './employees/employees-list/employees-lis
 import { EmployeeAddComponent } from './employees/employee-add/employee-add.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     EmployeeAddComponent,
     HeaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
