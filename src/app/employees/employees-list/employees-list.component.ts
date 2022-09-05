@@ -1,19 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
-import { EmployeeListService } from 'src/app/services/employee-list.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.css'],
-  providers: [EmployeeListService],
+  providers: [EmployeeService],
 })
 export class EmployeesListComponent implements OnInit {
   employee: Employee[];
-  constructor(private employeeService: EmployeeListService) {}
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
-    this.employee = this.employeeService.getEmployees();
-    console.log(this.employee);
+    this.getEmployees();
+  }
+
+  getEmployees() {
+    return this.employeeService.getEmployees().subscribe((employees) => {
+      this.employee = employees;
+      console.log(employees);
+    });
   }
 }

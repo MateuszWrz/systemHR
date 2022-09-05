@@ -4,21 +4,13 @@ import { EmployeeListService } from './employee-list.service';
 import { Employee } from '../models/employee.model';
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
-  employee: Employee[];
+  employees: Employee[];
   constructor(
     private http: HttpClient,
     private employeeListService: EmployeeListService
   ) {}
 
-  employeesAdd() {
-    const employees = this.employeeListService.getEmployees();
-    return this.http
-      .put(
-        'https://systemhr-c155e-default-rtdb.europe-west1.firebasedatabase.app/employees.json',
-        employees
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+  getEmployees() {
+    return this.employees.slice();
   }
 }

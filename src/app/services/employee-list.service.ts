@@ -37,12 +37,8 @@ export class EmployeeListService {
     ),
   ];
 
-  getEmployees() {
-    return this.employees.slice();
-  }
-
   addEmployeeToEmployeeList(employee: Employee[]) {
-    this.employees.push(...employee);
+    this.employees = employee;
     this.employeeChanged.emit(this.employees.slice());
   }
 }
