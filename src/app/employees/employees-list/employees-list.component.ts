@@ -9,7 +9,10 @@ import { EmployeeService } from 'src/app/services/employee.service';
   providers: [EmployeeService],
 })
 export class EmployeesListComponent implements OnInit {
-  employee: Employee[];
+  employees: Employee[];
+  employee: Employee;
+  addingEmployee = false;
+  selectedEmployee: Employee;
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
@@ -17,9 +20,24 @@ export class EmployeesListComponent implements OnInit {
   }
 
   getEmployees() {
-    return this.employeeService.getEmployees().subscribe((employees) => {
-      this.employee = employees;
-      console.log(employees);
+    return this.employeeService.getEmployees().subscribe((employee) => {
+      this.employees = employee;
+      console.log(employee);
+    });
+  }
+  onSelect(employee: any) {
+    this.selectedEmployee = employee;
+    this.employeeService.getEmployee(employee.id).subscribe((res) => {
+      this.employee = res;
+      console.log(res);
+    });
+  }
+  deleteEmployee(employee: Employee) {
+    this.employeeService.deleteEmployee(employee).subscribe((res) => {
+      this.employees = this.employees.filter((e) => e !== employee);
+      if (this.selectedEmployee === employee) {
+        this.selectedEmployee = null;
+      }
     });
   }
 }

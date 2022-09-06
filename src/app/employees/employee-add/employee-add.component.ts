@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -9,8 +9,8 @@ import { EmployeeService } from 'src/app/services/employee.service';
   providers: [EmployeeService],
 })
 export class EmployeeAddComponent implements OnInit {
-  @Input() employees: Employee[];
   addingEmployee = false;
+  employees: any = [];
   selectedEmployee: Employee;
   constructor(private employeeService: EmployeeService) {}
 
@@ -21,41 +21,35 @@ export class EmployeeAddComponent implements OnInit {
     this.selectedEmployee = null;
   }
 
-  deleteEmployee(employee: Employee) {
-    this.employeeService.deleteEmployee(employee).subscribe((res) => {
-      this.employees = this.employees.filter((e) => e !== employee);
-      if (this.selectedEmployee === employee) {
-        this.selectedEmployee = null;
-      }
-    });
-  }
-
-  onSelect(employee: Employee) {
-    this.addingEmployee = false;
-    this.selectedEmployee = employee;
-  }
-
   enableAddMode() {
     this.addingEmployee = true;
     this.selectedEmployee = new Employee();
   }
-
   onAddEmployee() {
-    if (this.addingEmployee) {
-      this.employeeService
-        .addEmployee(this.selectedEmployee)
-        .subscribe((employee) => {
-          this.addingEmployee = false;
-          this.selectedEmployee = null;
-          this.employees.push(employee);
-        });
-    } else {
-      this.employeeService
-        .updateEmployee(this.selectedEmployee)
-        .subscribe((employee) => {
-          this.addingEmployee = false;
-          this.selectedEmployee = null;
-        });
-    }
+    //   if (this.addingEmployee) {
+    //     this.employeeService
+    //       .addEmployee(this.selectedEmployee)
+    //       .subscribe((employee) => {
+    //         this.addingEmployee = false;
+    //         this.selectedEmployee = null;
+    //         this.employees.push(employee);
+    //         console.log(employee);
+    //       });
+    //   } else {
+    //     this.employeeService
+    //       .updateEmployee(this.selectedEmployee)
+    //       .subscribe((employee) => {
+    //         this.addingEmployee = false;
+    //         this.selectedEmployee = null;
+    //         console.log(employee);
+    //       });
+    //   }
+
+    this.employees = this.employeeService
+      .addEmployee(this.selectedEmployee)
+      .subscribe((employee) => {
+        this.employees.push(employee);
+        // console.log(employee);
+      });
   }
 }

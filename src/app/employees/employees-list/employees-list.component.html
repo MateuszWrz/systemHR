@@ -9,22 +9,19 @@
                     <td>Imię</td>
                     <td>Nazwisko</td>
                     <td>Data urodzenia</td>
+                    <td>Adres</td>
+                    <td>Numer telefonu</td>
                     <td>Data zatrudnienia</td>
                     <td>Stanowisko</td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Mateusz</td>
-                    <td>Wrzyszcz</td>
-                    <td>05.07.1999</td>
-                    <td>20.06.2022</td>
-                    <td>Software Engineer</td>
-                </tr>
-                <tr *ngFor="let employeeEl of employee">
+                <tr *ngFor="let employeeEl of employees" (click)="onSelect(employeeEl)">
                     <td>{{employeeEl.name}}</td>
                     <td>{{employeeEl.surname}}</td>
                     <td>{{employeeEl.dateOfBirth}}</td>
+                    <td>{{employeeEl.adress}}</td>
+                    <td>{{employeeEl.numberPhone}}</td>
                     <td>{{employeeEl.dateOfEmployment}}</td>
                     <td>{{employeeEl.contract}}</td>
                 </tr>
