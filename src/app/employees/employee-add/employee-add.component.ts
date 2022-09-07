@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -11,45 +12,29 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class EmployeeAddComponent implements OnInit {
   addingEmployee = false;
   employees: any = [];
-  selectedEmployee: Employee;
-  constructor(private employeeService: EmployeeService) {}
+  newEmployee: Employee;
+  constructor(
+    private employeeService: EmployeeService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {}
 
   cancel() {
     this.addingEmployee = false;
-    this.selectedEmployee = null;
+    this.newEmployee = null;
   }
 
-  enableAddMode() {
-    this.addingEmployee = true;
-    this.selectedEmployee = new Employee();
-  }
+  // enableAddMode() {
+  //   this.addingEmployee = true;
+  //   this.selectedEmployee = new Employee();
+  // }
   onAddEmployee() {
-    //   if (this.addingEmployee) {
-    //     this.employeeService
-    //       .addEmployee(this.selectedEmployee)
-    //       .subscribe((employee) => {
-    //         this.addingEmployee = false;
-    //         this.selectedEmployee = null;
-    //         this.employees.push(employee);
-    //         console.log(employee);
-    //       });
-    //   } else {
-    //     this.employeeService
-    //       .updateEmployee(this.selectedEmployee)
-    //       .subscribe((employee) => {
-    //         this.addingEmployee = false;
-    //         this.selectedEmployee = null;
-    //         console.log(employee);
-    //       });
-    //   }
-
     this.employees = this.employeeService
-      .addEmployee(this.selectedEmployee)
-      .subscribe((employee) => {
-        this.employees.push(employee);
-        // console.log(employee);
+      .addEmployee(this.newEmployee)
+      .subscribe((res) => {
+        this.employees.push(res);
+        console.log(res);
       });
   }
 }

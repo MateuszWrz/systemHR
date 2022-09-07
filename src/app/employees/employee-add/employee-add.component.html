@@ -5,7 +5,6 @@
     <div class="col-md-6 mb-3 mt-2">
         <label for="floatingSelect">Imię</label>
         <input type="text" class="form-control" id="floatingInput" placeholder="Imię">
-
     </div>
     <div class="col-md-6 mb-3">
         <label for="floatingSelect">Nazwisko</label>
@@ -14,22 +13,18 @@
     <div class="col-md-6 mb-3">
         <label for="floatingSelect">Data urodzenia</label>
         <input class="form-control" id="floatingInput" placeholder="Data urodzenia">
-
     </div>
     <div class="col-md-6 mb-3">
         <label for="floatingSelect">Adres</label>
         <input class="form-control" id="floatingInput" placeholder="Adres">
-
     </div>
     <div class="col-md-6 mb-3">
         <label for="floatingSelect">Numer telefonu</label>
         <input class="form-control" id="floatingInput" placeholder="Numer telefonu">
-
     </div>
     <div class=" col-md-6 mb-3">
         <label for="floatingSelect">Data zatrudnienia</label>
         <input class="form-control" id="floatingInput" placeholder="Data zatrudnienia">
-
     </div>
     <div class="col-md-6 mb-3">
         <label for="floatingSelect">Stanowisko</label>
@@ -41,7 +36,7 @@
         </select>
     </div>
     <div class="d-grid gap-2 d-md-flex">
-        <button type="button" class="btn btn-success btn-sm" (click)="onAddEmployee()">Dodaj</button>
+        <button type="button" class="btn btn-success btn-sm" #postForm (click)="onAddEmployee()">Dodaj</button>
         <button type="button" class="btn btn-secondary btn-sm">Anuluj</button>
     </div>
 </div>
