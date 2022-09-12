@@ -3,6 +3,7 @@ import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Contracts } from 'src/app/models/contracts.model';
 import { ContractsService } from 'src/app/services/contracts.service';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-employee-add',
   templateUrl: './employee-add.component.html',
@@ -15,10 +16,20 @@ export class EmployeeAddComponent implements OnInit {
   newEmployee: Employee;
   submitted = false;
   contracts: Contracts[];
+
   constructor(
     private employeeService: EmployeeService,
     private contractsService: ContractsService
   ) {}
+  addEmployeeForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    adress: new FormControl('', [Validators.required]),
+    numberPhone: new FormControl('', [Validators.required]),
+    dateOfBirth: new FormControl('', [Validators.required]),
+    dateOfEmployment: new FormControl('', [Validators.required]),
+    contract: new FormControl('', [Validators.required]),
+  });
 
   ngOnInit(): void {
     this.LoadContracts();
@@ -37,7 +48,7 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   onAddEmployee() {
-    console.log(this.newEmployee);
+    this.employees = this.addEmployeeForm.value;
     this.employeeService.addEmployee(this.newEmployee).subscribe({
       next: (employee) => {
         this.employees.push(employee);
@@ -47,5 +58,15 @@ export class EmployeeAddComponent implements OnInit {
       },
     });
     console.log(this.employees);
+
+    // console.log(employeeData);
+    // this.employeeService.addEmployee(employeeData).subscribe({
+    //   next: (res) => {
+    //     console.log(res);
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //   },
+    // });
   }
 }

@@ -22,7 +22,7 @@ export class EmployeesListComponent implements OnInit {
   getEmployees() {
     return this.employeeService.getEmployees().subscribe((employee) => {
       this.employees = employee;
-      console.log(employee);
+      // console.log(employee);
     });
   }
   onSelect(employee: any) {

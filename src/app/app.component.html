@@ -1,5 +1,4 @@
-<app-header (featureSelected)="onNavigate($event)"></app-header>
+<app-header></app-header>
 <div class="container">
-    <app-employees *ngIf="loadedFeature === 'employees' "></app-employees>
-    <app-employees-list *ngIf="loadedFeature === 'employees-list'"></app-employees-list>
+    <router-outlet></router-outlet>
 </div>
