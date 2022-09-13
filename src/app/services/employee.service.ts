@@ -19,9 +19,9 @@ export class EmployeeService {
     );
   }
 
-  addEmployee(employee: Employee) {
+  addEmployee(id: Employee) {
     // return this.http.post<Employee>(`${environment.api}`, employee);
-    return this.http.post<Employee>(environment.api + '/Employees', employee);
+    return this.http.post<Employee[]>(environment.api + '/Employees', id);
   }
 
   updateEmployee(id) {

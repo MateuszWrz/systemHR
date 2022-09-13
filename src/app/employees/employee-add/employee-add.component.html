@@ -4,6 +4,7 @@
         <h5>Nowy pracownik</h5>
     </div>
     <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger"> -->
+    <!--  #addEmployeeForm="ngForm"  -->
     <form [formGroup]="addEmployeeForm" (ngSubmit)="onAddEmployee()">
         <div class="col-md-6 mb-3 mt-2">
             <label for="name">Imię</label>
@@ -35,10 +36,9 @@
             <select class="form-select" id="contract" aria-label="Floating label select example"
                 formControlName="contract">
                 <option value="" disabled selected hidden> Wybierz stanowisko</option>
-                <option value="stanowisko">stanowisko</option>
-                <option *ngFor="let contract of contracts" value="{{contract}}">{{contract.contractName}}
+                <option *ngFor="let contract of contracts" value="{{contract.contractName}}"> {{contract.contractName}}
                 </option>
-                <!-- <option value="1">One</option>
+                <!-- <option value=" 1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option> -->
             </select>

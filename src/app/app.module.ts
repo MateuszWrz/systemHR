@@ -10,6 +10,7 @@ import { EmployeeAddComponent } from './employees/employee-add/employee-add.comp
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     EmployeesListComponent,
     EmployeeAddComponent,
     HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

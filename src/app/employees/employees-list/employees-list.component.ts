@@ -12,7 +12,7 @@ export class EmployeesListComponent implements OnInit {
   employees: Employee[];
   employee: Employee;
   addingEmployee = false;
-  selectedEmployee: Employee;
+  selectedEmployee: string;
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
@@ -32,13 +32,15 @@ export class EmployeesListComponent implements OnInit {
       console.log(res);
     });
   }
-  deleteEmployee(employee: Employee) {
-    this.selectedEmployee = employee;
-    this.employeeService.deleteEmployee(employee).subscribe((res) => {
-      this.employees = this.employees.filter((e) => e !== employee);
-      if (this.selectedEmployee === employee) {
-        this.selectedEmployee = null;
-      }
+  deleteEmployee(id) {
+    this.employeeService.deleteEmployee(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        console.log('Usunięto ' + id);
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 }

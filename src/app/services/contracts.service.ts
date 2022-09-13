@@ -8,6 +8,6 @@ export class ContractsService {
   constructor(private http: HttpClient) {}
 
   getContracts() {
-    return this.http.get<Contracts>(environment.api + '/Contracts');
+    return this.http.get<Contracts[]>(environment.api + '/Contracts');
   }
 }
