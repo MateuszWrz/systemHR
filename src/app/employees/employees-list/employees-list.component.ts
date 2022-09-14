@@ -20,23 +20,37 @@ export class EmployeesListComponent implements OnInit {
   }
 
   getEmployees() {
-    return this.employeeService.getEmployees().subscribe((employee) => {
-      this.employees = employee;
-      // console.log(employee);
+    return this.employeeService.getEmployees().subscribe({
+      next: (employee) => {
+        this.employees = employee;
+        console.log(employee);
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
   onSelect(employee: any) {
     this.selectedEmployee = employee;
-    this.employeeService.getEmployee(employee.id).subscribe((res) => {
-      this.employee = res;
-      console.log(res);
+    this.employeeService.getEmployee(employee.id).subscribe({
+      next: (res) => {
+        this.employee = res;
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
   deleteEmployee(id) {
     this.employeeService.deleteEmployee(id).subscribe({
-      next: (res) => {
+      next: (res: Employee[]) => {
+        this.employees.splice(
+          this.employees.findIndex((p) => (p.id = id)),
+          1
+        );
         console.log(res);
-        console.log('Usunięto ' + id);
+        console.log('Usunięto pracownika o numerze id ' + id);
       },
       error: (err) => {
         console.log(err);

@@ -1,52 +1,50 @@
 <div class="container-fluid flex-column w-75 bg-light">
-
     <div>
         <h5>Nowy pracownik</h5>
     </div>
-    <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger"> -->
-    <!--  #addEmployeeForm="ngForm"  -->
-    <form [formGroup]="addEmployeeForm" (ngSubmit)="onAddEmployee()">
+    <form #addEmployeeForm="ngForm" (ngSubmit)="onAddEmployee(addEmployeeForm.value)">
         <div class="col-md-6 mb-3 mt-2">
             <label for="name">Imię</label>
-            <input type="text" id="name" class="form-control" placeholder="Imię" formControlName="name">
+            <input type="text" id="name" class="form-control" placeholder="Imię" required [(ngModel)]="newEmployee.name"
+                name="name">
         </div>
         <div class="col-md-6 mb-3">
             <label for="surname">Nazwisko</label>
-            <input type="text" id="surname" class="form-control" placeholder="Nazwisko" formControlName="surname">
+            <input type="text" id="surname" class="form-control" placeholder="Nazwisko"
+                [(ngModel)]="newEmployee.surname" required [(ngModel)]="newEmployee.surname" name="surname">
         </div>
         <div class="col-md-6 mb-3">
             <label for="birth">Data urodzenia</label>
-            <input class="form-control" id="birth" placeholder="Data urodzenia" formControlName="dateOfBirth">
+            <input class="form-control" id="birth" placeholder="Data urodzenia" required
+                [(ngModel)]="newEmployee.dateOfBirth" name="dateOfBirth">
         </div>
         <div class="col-md-6 mb-3">
             <label for="adress">Adres</label>
-            <input class="form-control" id="adress" placeholder="Adres" formControlName="adress">
+            <input class="form-control" id="adress" placeholder="Adres" required [(ngModel)]="newEmployee.adress"
+                name="adress">
         </div>
         <div class="col-md-6 mb-3">
             <label for="phone">Numer telefonu</label>
-            <input class="form-control" id="phone" placeholder="Numer telefonu" formControlName="numberPhone">
+            <input class="form-control" id="numberPhone" placeholder="Numer telefonu" required
+                [(ngModel)]="newEmployee.numberPhone" name="numberPhone">
         </div>
         <div class=" col-md-6 mb-3">
             <label for="employment">Data zatrudnienia</label>
-            <input class="form-control" id="employment" placeholder="Data zatrudnienia"
-                formControlName="dateOfEmployment">
+            <input class="form-control" id="employment" placeholder="Data zatrudnienia" required
+                [(ngModel)]="newEmployee.dateOfEmployment" name="dateOfEmployment">
         </div>
         <div class="col-md-6 mb-3">
             <label for="contract">Stanowisko</label>
-            <select class="form-select" id="contract" aria-label="Floating label select example"
-                formControlName="contract">
-                <option value="" disabled selected hidden> Wybierz stanowisko</option>
+            <select class="form-select" id="contract" aria-label="Floating label select example" required
+                [(ngModel)]="newEmployee.contract" placeholder="Wybierz stanowisko:" name="contract">
+                <option value="Wybierz stanowisko" disabled selected hidden> Wybierz stanowisko</option>
                 <option *ngFor="let contract of contracts" value="{{contract.contractName}}"> {{contract.contractName}}
                 </option>
-                <!-- <option value=" 1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option> -->
             </select>
         </div>
         <div class="d-grid gap-2 d-md-flex">
-            <button type="submit" class="btn btn-success btn-sm" [disabled]="addEmployeeForm.valid">Dodaj</button>
+            <button type="submit" class="btn btn-success btn-sm" [disabled]="!addEmployeeForm.valid">Dodaj</button>
             <button type="button" class="btn btn-secondary btn-sm">Anuluj</button>
         </div>
     </form>
 </div>
-<!-- </div> -->

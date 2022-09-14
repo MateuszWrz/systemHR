@@ -14,14 +14,14 @@ export class EmployeeService {
     return this.http.get<Employee>(environment.api + '/Employees' + '/' + id);
   }
   deleteEmployee(id) {
-    return this.http.delete<Employee>(
+    return this.http.delete<Employee[]>(
       environment.api + '/Employees' + '/' + id
     );
   }
 
-  addEmployee(id: Employee) {
+  addEmployee(employee: Employee) {
     // return this.http.post<Employee>(`${environment.api}`, employee);
-    return this.http.post<Employee[]>(environment.api + '/Employees', id);
+    return this.http.post<Employee>(environment.api + '/Employees', employee);
   }
 
   updateEmployee(id) {
