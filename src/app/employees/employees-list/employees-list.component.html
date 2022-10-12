@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div>
+        <h3> Lista pracowników</h3>
+    </div>
+    <div class="table-wrapper mt-4">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>Imię</td>
+                    <td>Nazwisko</td>
+                    <td>Data urodzenia</td>
+                    <td>Adres</td>
+                    <td>Numer telefonu</td>
+                    <td>Data zatrudnienia</td>
+                    <td>Stanowisko</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employeeEl of employees; let i = index " (click)="onSelect(employeeEl)"
+                    style="cursor:pointer" tabindex="1">
+                    <td>{{employeeEl.name}}</td>
+                    <td>{{employeeEl.surname}}</td>
+                    <td>{{employeeEl.dateOfBirth}}</td>
+                    <td>{{employeeEl.adress}}</td>
+                    <td>{{employeeEl.numberPhone}}</td>
+                    <td>{{employeeEl.dateOfEmployment}}</td>
+                    <td>{{employeeEl.contract}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-grid gap-2 d-md-flex mb-3">
+        <button type="button" class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.id)">Usuń</button>
+        <button type="button" (click)="editEmployee(employee)" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Edytuj
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{modalTitle}}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <app-edit-employees [employee]="employee" *ngIf="ActivateEditComponent"></app-edit-employees>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <app-edit-employees [employee]="employeeToEdit"></app-edit-employees> -->

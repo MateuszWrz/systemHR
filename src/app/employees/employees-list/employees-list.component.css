@@ -1,0 +1,7 @@
+table tr:focus {
+  background-color: rgb(206, 206, 206);
+  transition: 0.3;
+}
+.container-fluid {
+  height: 800px;
+}

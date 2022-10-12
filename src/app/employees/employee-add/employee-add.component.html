@@ -1,0 +1,66 @@
+<div class="container-fluid flex-column w-75 bg-light">
+    <div>
+        <h3>Nowy pracownik</h3>
+    </div>
+    <form #addEmployeeForm="ngForm" (ngSubmit)="onAddEmployee(addEmployeeForm.value)">
+        <div class="col-md-6 mb-3 mt-2">
+            <label for="name">Imię</label>
+            <input type="text" id="name" class="form-control" placeholder="Imię" required [(ngModel)]="newEmployee.name"
+                name="name">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="surname">Nazwisko</label>
+            <input type="text" id="surname" class="form-control" placeholder="Nazwisko"
+                [(ngModel)]="newEmployee.surname" required [(ngModel)]="newEmployee.surname" name="surname">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="birth">Data urodzenia</label>
+            <input type="date" class="form-control" id="birth" required [(ngModel)]="newEmployee.dateOfBirth"
+                name="dateOfBirth">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="adress">Adres</label>
+            <input class="form-control" id="adress" placeholder="Adres" required [(ngModel)]="newEmployee.adress"
+                name="adress">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="phone">Numer telefonu</label>
+            <input class="form-control" id="numberPhone" placeholder="Numer telefonu" required
+                [(ngModel)]="newEmployee.numberPhone" name="numberPhone">
+        </div>
+        <div class=" col-md-6 mb-3">
+            <label for="employment">Data zatrudnienia</label>
+            <input type="date" class="form-control" id="employment" required [(ngModel)]="newEmployee.dateOfEmployment"
+                name="dateOfEmployment">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="contract">Stanowisko</label>
+            <select class="form-select" id="contract" aria-label="Floating label select example" required
+                [(ngModel)]="newEmployee.contract" placeholder="Wybierz stanowisko:" name="contract">
+                <option value="Wybierz stanowisko" selected hidden> Wybierz stanowisko</option>
+                <option *ngFor="let contract of contracts" value="{{contract.contractName}}"> {{contract.contractName}}
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            [disabled]="!addEmployeeForm.valid">
+            Dodaj
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nowy pracownik</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Dodano nowego pracownika.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
